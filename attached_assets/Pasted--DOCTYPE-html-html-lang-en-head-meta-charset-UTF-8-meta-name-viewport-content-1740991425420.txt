@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellaine I-Lin Tsai | Product Manager</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #172B4D;
+            background-color: #FFFFFF;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #0F2D4E;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 50px;
+            background-color: #E5BE7A;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #172B4D;
+        }
+
+        a {
+            color: #255B8B;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #E5BE7A;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #0F2D4E;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        nav.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        nav.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .logo span {
+            color: #E5BE7A;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+            color: #FFFFFF;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #E5BE7A;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #E5BE7A;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #F2F2F2 0%, #FFFFFF 100%);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #0F2D4E;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #255B8B;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: #172B4D;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 5px solid #FFFFFF;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: #0F2D4E;
+            color: #FFFFFF;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(15, 45, 78, 0.2);
+        }
+
+        .cta-btn:hover {
+            background-color: #255B8B;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(15, 45, 78, 0.3);
+        }
+
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .about {
+            background-color: #FFFFFF;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            background-color: #F2F2F2;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #0F2D4E;
+            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background-color: #FFFFFF;
+            color: #172B4D;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid #E5BE7A;
+        }
+
+        .skill-tag:hover {
+            background-color: #0F2D4E;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            border-color: #E5BE7A;
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: #F2F2F2;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+        }
+
+        .timeline::after {
+            content: '';
+            /* Removed the vertical line */
+        }
+
+        .timeline-item {
+            padding: 20px;
+            width: 80%; /* Adjust width as needed */
+            margin-bottom: 2rem;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #E5BE7A;
+            border-radius: 50%;
+            top: 25px;
+            left: -10px;
+            z-index: 1;
+        }
+
+
+        .timeline-content {
+            /* Removed unnecessary nested div */
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: #E5BE7A;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #0F2D4E;
+        }
+
+        .timeline-location {
+            font-style: italic;
+            color: #4D4D4D;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .timeline-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #172B4D;
+        }
+
+        .timeline-description li::before {
+            content: "•";
+            color: #E5BE7A;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Education Section */
+        .education {
+            background-color: #FFFFFF;
+        }
+
+        .education-card {
+            background-color: #F2F2F2;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #0F2D4E;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-date {
+            font-weight: 600;
+            color: #E5BE7A;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #0F2D4E;
+        }
+
+        .education-institution {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #255B8B;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #F2F2F2 0%, #FFFFFF 100%);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #E5BE7A;
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: #255B8B;
+        }
+
+        .contact-link:hover {
+            color: #E5BE7A;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0F2D4E;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            list-style: none;
+        }
+
+        .social-links li {
+            margin: 0 1rem;
+        }
+
+        .social-links a {
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #E5BE7A;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: #D3D3D3;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item-right {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero {
+                padding-top: 120px;
+                height: auto;
+                padding-bottom: 5rem;
+            }
+
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                margin-top: 2rem;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 0.5rem;
+            }
+
+            .education-card {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <div class="logo"><span>ET</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Ellaine (I-Lin) Tsai</h1>
+                <h3 class="hero-subtitle">Product Manager & AI Enthusiast</h3>
+                <p class="hero-description">Product Manager specialized in AI innovation and data-driven strategy. I transform insights into user-centered solutions that drive business growth.</p>
+                <a href="#contact" class="cta-btn">Get In Touch</a>
+            </div>
+            <div class="hero-image">
+                <img src="profilepic.jpg" alt="Ellaine Tsai">
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="section about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Profile</h2>
+            </div>
+            <p>Results-driven Product Manager with a track record of developing AI-powered solutions that enhance user experience and drive business outcomes. Skilled at transforming data into actionable strategies, leading 0→1 product launches, and expanding platform capabilities to accelerate growth. I excel in cross-functional collaboration to deliver intelligent, user-focused solutions with measurable impact.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>🧠 Product Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Product Strategy</span>
+                        <span class="skill-tag">Roadmap Planning</span>
+                        <span class="skill-tag">Product Analytics</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Feature Prioritization</span>
+                        <span class="skill-tag">Cross-functional Leadership</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>💻 Technical Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">AI/ML</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">APIs</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🛠️ Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Google Analytics</span>
+                        <span class="skill-tag">Amplitude</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Mixpanel</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">Salesforce</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🗣️ Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">English (Fluent)</span>
+                        <span class="skill-tag">Mandarin Chinese (Native)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sep 2021 - Present</div>
+                        <h3 class="timeline-title">Product Manager</h3>
+                        <div class="timeline-location">Life Link Cloud, Tainan, Taiwan</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Led cross-functional teams to develop AI/ML-powered products, driving 35% increase in user engagement and 25% improvement in conversion rates through strategic roadmap planning and agile execution.</li>
+                                <li>Conducted extensive market research and user interviews to define product requirements for a new AI feature, resulting in a solution that addressed 85% of identified user pain points.</li>
+                                <li>Collaborated with engineers and designers to implement A/B testing frameworks that improved feature adoption by 40% and reduced user churn by 15% through data-driven iteration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 2020 - Sep 2021</div>
+                        <h3 class="timeline-title">Marketing Specialist & Outside Sales Representative</h3>
+                        <div class="timeline-location">Life Link Cloud, Tainan, Taiwan</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Spearheaded a cross-functional UI/UX redesign project, creating wireframes and high-fidelity mockups in Figma—enhancing user experience and leading to a 68% improvement in user satisfaction scores.</li>
+                                <li>Developed and executed SEO-driven content strategies, leveraging keyword research, backlinking, and influencer partnerships—generating a 45% boost in organic traffic and a 25% increase in inbound leads.</li>
+                                <li>Designed and facilitated training programs for the sales team, improving client communication techniques—driving a 20% boost in annual contract renewals.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2019 - Aug 2020</div>
+                        <h3 class="timeline-title">Digital Marketing / E-commerce Intern</h3>
+                        <div class="timeline-location">Ryerson Holding Corporation, Chicago, IL</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Analyzed user acquisition data, behavior flow, and conversion funnels using Google Analytics and Excel—enhancing sales strategies and leading to a 15% growth in conversion rates.</li>
+                                <li>Conducted A/B testing and user behavior analysis via Hotjar and Omniconvert—resulting in a 15% improvement in click-through rates and a 30% reduction in customer support tickets.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+
+            <div class="education-card">
+                <div class="education-date">Expected in Jun 2025</div>
+                <h3 class="education-title">Master of Science in Information Systems</h3>
+                <div class="education-institution">University of Washington, Foster School of Business</div>
+                <p class="education-location">Seattle, WA</p>
+            </div>
+
+            <div class="education-card">
+                <div class="education-date">Aug 2016 - May 2020</div>
+                <h3 class="education-title">Bachelor of Science</h3>
+                <div class="education-institution">Purdue University, Krannert School of Management</div>
+                <p class="education-location">West Lafayette, IN</p>
+                <p>Triple majoring in Marketing, Finance, and Management</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <a href="mailto:ellainetsai@gmail.com" class="contact-link">ellainetsai@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/ellainetsai/" class="contact-link" target="_blank">linkedin.com/in/ellainetsai/</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>Thanks for visiting my portfolio website. I'm always open to discussing product development, AI innovation, or potential opportunities.</p>
+                <ul class="social-links">
+                    <li><a href="https://linkedin.com/in/ellainetsai/" target="_blank">LinkedIn</a></li>
+                </ul>
+                <p class="copyright">© 2025 Ellaine I-Lin Tsai. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const section = document.querySelector('.hero');
+            if (window.scrollY > section.offsetHeight) {
+                nav.classList.add('visible');
+                nav.classList.remove('hidden');
+            } else {
+                nav.classList.add('hidden');
+                nav.classList.remove('visible');
+            }
+        });
+    </script>
+
+</body>
+</html>
